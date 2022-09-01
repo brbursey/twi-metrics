@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  web:
+    init: true
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
