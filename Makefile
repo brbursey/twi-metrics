@@ -6,6 +6,10 @@ rebuild:
 	docker-compose rm -f web
 	docker-compose build --force-rm web
 
+run:
+	make rebuild
+	docker compose up
+
 shell:
 	docker-compose run --rm web bash
 

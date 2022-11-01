@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.11.0-slim-buster
 
 RUN apt-get update
 
@@ -20,4 +20,4 @@ COPY . /code/
 
 WORKDIR /code
 
-CMD ["python", "main.py"]
+ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]

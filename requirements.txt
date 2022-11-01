@@ -1,4 +1,6 @@
-tweepy
+tweepy==4.10
+envparse
+flask
 
 #linting
 black
