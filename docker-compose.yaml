@@ -9,3 +9,16 @@ services:
       - .:/code
     ports:
       - "8000:5000"
+
+  db:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_DB=twitter-metrics
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - HOSTNAME=localhost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:

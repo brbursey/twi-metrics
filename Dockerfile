@@ -7,7 +7,8 @@ RUN pip install -U pip
 COPY ./requirements.txt ./code/requirements.txt
 
 RUN python3 -m venv /venv
-
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc
 RUN pip install --no-compile -r /code/requirements.txt
 
 RUN     mkdir -vp /code ; \

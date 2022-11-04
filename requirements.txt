@@ -1,8 +1,11 @@
+# libraries
 tweepy==4.10
 envparse
 flask
+sqlalchemy==1.3.23
+psycopg2
 
-#linting
+# linting
 black
 flake8
 isort

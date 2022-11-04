@@ -1,13 +1,43 @@
 import os
 
 import tweepy
-from flask import Flask, redirect, request
+from flask import Flask, redirect, render_template, request, session
+from tweepy import API
+
+from db import Session
+from metrics import DM, Metrics
+from models import User
 
 app = Flask(__name__)
+
 api_key = os.environ.get("API_KEY")
 api_secret = os.environ.get("API_SECRET")
-
 auth = tweepy.OAuth1UserHandler(api_key, api_secret)
+
+conn = Session()
+
+
+# @app.route("/")
+# def start():
+#     return render_template("login.html")
+
+
+# @app.route("/login", methods=["POST"])
+# def login():
+#     email = request.form["email"]
+#     password = request.form["password"]
+
+#     user = conn.query(User).filter_by(email=email)
+
+#     session["email"] = email
+#     session["password"] = password
+
+#     print(user)
+
+#     if not user:
+#         return redirect("/authorize")
+
+#     return redirect("home/")
 
 
 @app.route("/authorize")
@@ -27,11 +57,27 @@ def callback():
     oauth_token = request.args.get("auth_token", None)
     oauth_verifier = request.args.get("oauth_verifier", None)
     access_token, access_token_secret = auth.get_access_token(oauth_verifier)
+    # api = API(auth)
+    # twitter_user = api.verify_credentials()
 
-    # Adding this here to test API.
-    # Need to be sent to the homepage from here if verified
-    user = tweepy.API(auth, wait_on_rate_limit=True)
-    return user.verify_credentials().name
+    # user = User(
+    #     name=twitter_user.name,
+    #     email=session["email"],
+    #     twitter_id=twitter_user.id,
+    #     authorized=True,
+    # )
+    # session["user"] = user
+    # conn.add(user)
+
+    return redirect("/home")
+
+
+@app.route("/home")
+def home():
+    api = API(auth)
+    twitter_user = api.verify_credentials()
+
+    return f"Welcome to twitter-metrics, {twitter_user.name}!"
 
 
 if __name__ == "__main__":
