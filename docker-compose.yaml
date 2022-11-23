@@ -5,6 +5,9 @@ services:
     build: .
     env_file:
       - .env
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_DEBUG=1
     volumes:
       - .:/code
     ports:

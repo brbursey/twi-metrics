@@ -2,6 +2,9 @@
 tweepy==4.10
 envparse
 flask
+flask_wtf
+email_validator
+flask-sqlalchemy
 sqlalchemy==1.3.23
 psycopg2
 

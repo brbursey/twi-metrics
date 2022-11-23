@@ -1,0 +1,35 @@
+<div class="user">
+    <link rel="stylesheet" href="/static/login.scss" type="text/css">
+    <header class="user__header">
+        <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" /> -->
+        <h1 class="user__title">Register</h1>
+    </header>
+
+    <form class="form" method="POST" action="">
+        <div>
+            {{ form.hidden_tag() }}
+        </div>
+
+        <div class="form__group">
+            {{ form.username(type="text", placeholder=form.username.label.text, class="form__input") }}
+        </div>
+
+        <div class="form__group">
+            {{ form.email(type="email", placeholder=form.email.label.text, class="form__input")
+            }}
+        </div>
+
+        <div class="form__group">
+            {{ form.password(type="password", placeholder=form.password.label.text, class="form__input") }}
+        </div>
+
+        <div class="form__group">
+            {{ form.confirm(type="password", placeholder=form.confirm.label.text, class="form__input")
+            }}
+        </div>
+
+        <div class="form__group">
+            {{ form.submit(class="button") }}
+        </div>
+    </form>
+</div>
