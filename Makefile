@@ -4,7 +4,7 @@ rebuild:
 	@echo "Rebuilding local docker-compose images..."
 	docker-compose kill
 	docker-compose rm -f web
-	docker-compose build --force-rm web
+	docker-compose build --no-cache --force-rm web
 
 run:
 	make rebuild
